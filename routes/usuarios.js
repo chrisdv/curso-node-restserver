@@ -5,16 +5,23 @@ const { check } = require('express-validator');
 
 
 
-const validarCampos = require('../middlewares/validar-campos');
+ const validarCampos = require('../middlewares/validar-campos');
+ const { validarJWT } = require('../middlewares/validar-jwt');
+ const { esAdminRole, tieneRole } = require('../middlewares/validar-roles');
+
+/*const { validarCampos,
+    validarJWT,
+    esAdminRole, 
+    tieneRole }  = require ('../middlewares');
+*/
 const { esRoleValido, emailExiste, existeUsuarioPorID } = require('../helpers/db-validators');
+
 const { usuariosGet, 
     usuariosPost, 
     usuariosPut, 
     usuariosPatch, 
     usuariosDelete } = require('../controllers/usuarios');
-
-
-
+const req = require('express/lib/request');
 
 const rutas = Router();
 
@@ -47,6 +54,9 @@ rutas.put('/:id',[
 ], usuariosPut);//por medio de los : se define la variable de donde obtendré mi parámetro
 rutas.patch('/', usuariosPatch);
 rutas.delete('/:id', [
+    validarJWT,
+    //esAdminRole,
+    tieneRole('ADMIN_ROLE', 'VENTAS_ROLE', 'NOSE'),
     check('id', 'No es ID valido de MongoID').isMongoId(),
     check('id').custom(existeUsuarioPorID),
     validarCampos

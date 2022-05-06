@@ -46,7 +46,10 @@ const UsuarioSchema = Schema({
 UsuarioSchema.methods.toJSON = function() {
             //se utiliza el ...usuario para indicar que quitando los dos argumentos que no quiero, se inserten
                 // en un objeto llamado usuario
-    const { __v, password , ...usuario  } = this.toObject();  //se desesctrucura y se ponen los nombres de los campos que no quiero mostrar
+    const { __v, password , _id, ...usuario  } = this.toObject();  //se desesctrucura y se ponen los nombres de los campos que no quiero mostrar
+    //primero ignoramos el _id que viene de mongo en línea arriba, después 
+        ////ahora transformamos _id en uid 
+    usuario.uid = _id;
     return usuario;
 }
 

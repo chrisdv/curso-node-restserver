@@ -130,16 +130,28 @@ const usuariosPatch = (req, res = response)=>{
 const usuariosDelete = async(req, res = response)=>{
 
     const { id } = req.params;
+    const uid = req.uid;
 
     //borrado fisico
-    //const usuario = await Usuario.findByIdAndDelete(id);
+    //const usuario = await Usuario.findByIdAndDelete(id); 
 
 
     const usuario = await Usuario.findByIdAndUpdate(id, {estado : false});
 
-    res.json({     
-        msg: 'se borró el id: ',
-        id
+    //usuario autenticado
+    const usuarioAutenticado = req.usuario;
+    //console.log("--------------------------printing req.usuario en controlador:", req.usuario);
+    
+
+    ///imprimir usuario y usuario autenticado
+    
+
+
+
+    res.json({             
+        usuario
+        ,uid
+        ,usuarioAutenticado
     });
 }
 
