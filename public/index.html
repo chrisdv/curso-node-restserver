@@ -49,13 +49,34 @@
             //recibimos el token del body
             const body = { id_token: response.credential };
 
+            //////SE COMENTA PORQUE EN EL CURSO NO VIENE LA RUTA PARA CUANDO ES CON HEROKU
+        //   fetch('http://localhost:8080/api/auth/google', {   /*por default el fetch es una peticion post*/
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type':'application/json'
+        //     },
+        //     body: JSON.stringify(body)  //*ASI SE TIENE QUE HACER CUANDO SE UTILIZA FETCH*/
+        //   })  
+        //     //se tiene que serializar porque el fetch no regresa el body directamente (lo regresa en un readable string)
+        //     .then( r => r.json())
+        //     .then( resp => {
+        //         console.log(resp)
+        //         localStorage.setItem( 'email', resp.usuario.correo)
+        //     })
+        //     .catch( console.warn )
+        // }
+            
 
-          fetch('http://localhost:8080/api/auth/google', {   /*por default el fetch es una peticion post*/
-            method: 'POST',
-            headers: {
-                'Content-Type':'application/json'
-            },
-            body: JSON.stringify(body)  //*ASI SE TIENE QUE HACER CUANDO SE UTILIZA FETCH*/
+
+        fetch(window.location.hostname.includes('localhost')
+            ?'http://localhost:8080/api/auth/google'
+            :'https://restserver-curso-chrisdc.herokuapp.com/api/auth/google',
+            {   /*por default el fetch es una peticion post*/
+                method: 'POST',
+                headers: {
+                    'Content-Type':'application/json'
+                },
+                body: JSON.stringify(body)  //*ASI SE TIENE QUE HACER CUANDO SE UTILIZA FETCH*/
           })  
             //se tiene que serializar porque el fetch no regresa el body directamente (lo regresa en un readable string)
             .then( r => r.json())
@@ -65,7 +86,7 @@
             })
             .catch( console.warn )
         }
-            
+          
 
 
             const button = document.getElementById('google_signout');
