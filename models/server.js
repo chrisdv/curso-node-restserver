@@ -7,8 +7,16 @@ class Server{
         constructor(){
             this.app = express();
             this.port = process.env.PORT;
-            this.usuariosPath = '/api/usuarios';
-            this.authPath = '/api/auth';
+            //en lugar de tener un string por cada ruta, hacemos un json para todas las rutas
+            // this.usuariosPath = '/api/usuarios';
+            // this.authPath = '/api/auth';
+            this.paths = {
+                auth:        '/api/auth',
+                buscar:      '/api/buscar',
+                categorias:  '/api/categorias',
+                productos:   '/api/productos',
+                usuarios:    '/api/usuarios'
+            }
 
             //Conexion a DB
             this.conectarDB();
@@ -49,9 +57,16 @@ class Server{
 
     //métodos de la clase server
     routes(){
-        this.app.use(this.authPath, require('../routes/auth'));
-        this.app.use(this.usuariosPath, require('../routes/usuarios'));
+            /////como ya cambiamos los strings de las rutas, ahora pondremos con el objeto y la propiedad
+        // this.app.use(this.authPath, require('../routes/auth'));
+        // this.app.use(this.usuariosPath, require('../routes/usuarios'));
         
+        this.app.use(this.paths.auth, require('../routes/auth'));
+        this.app.use(this.paths.buscar, require('../routes/buscar'));
+        this.app.use(this.paths.categorias, require('../routes/categorias'));
+        this.app.use(this.paths.productos, require('../routes/productos'));       
+        this.app.use(this.paths.usuarios, require('../routes/usuarios'));
+
     }
 
     listen(){        

@@ -37,6 +37,7 @@ const UsuarioSchema = Schema({
         default: false
     }
 
+
 });
 
 
@@ -57,4 +58,4 @@ UsuarioSchema.methods.toJSON = function() {
 
 //indicamos que el modelo es Usuarios ya que mongoose añade la S a las colecciones
 //e indicamos que el esquema es nuestro esquema UsuarioSchema
-module.exports = model('Usuarios', UsuarioSchema);
+module.exports = model('Usuario', UsuarioSchema);

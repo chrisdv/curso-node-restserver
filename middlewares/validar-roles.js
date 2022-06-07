@@ -14,9 +14,9 @@ const esAdminRole = ( req, res = response, next ) =>{
     }
 
     //estraemos el role y usuario
-    const { role, nombre } = req.usuario;
+    const { rol, nombre } = req.usuario;
 
-    if ( role !== 'ADMIN_ROLE'){
+    if ( rol !== 'ADMIN_ROLE'){
         return res.status(401).json({
             msg: `${nombre} no es administrador  -- Intente de nuevo`
         })

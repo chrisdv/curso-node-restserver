@@ -49,7 +49,7 @@ const validarJWT = async ( req = request, res = response, next ) =>{
         req.usuario = usuario;
         //console.log(payload);
         req.uid = uid;
-
+        console.log("usuario jwt: ", req.usuario )
         next();
     } catch (error) {
         res.status(401).json({
