@@ -16,4 +16,4 @@ const validarCampos = ( req, res, next) => {  /* como es un middleware lleva un 
 
 
 
-module.exports = validarCampos;
+module.exports = {validarCampos};

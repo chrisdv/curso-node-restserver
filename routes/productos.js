@@ -12,9 +12,9 @@ const { crearProducto,
         borrarProducto} = require('../controllers/productos');
 const { usuariosGet } = require('../controllers/usuarios');
 const { existeProductoPorID, existeCategoriaPorID } = require('../helpers/db-validators');
-const { validarJWT} = require('../middlewares/'); //no nos funcionó el index con los middlewares por eso ocupamos rutas completas
-const validarCampos = require('../middlewares/validar-campos');
-const { esAdminRole } = require('../middlewares/validar-roles');
+const { validarJWT, validarCampos, esAdminRole} = require('../middlewares/'); //no nos funcionó el index con los middlewares por eso ocupamos rutas completas
+//const validarCampos = require('../middlewares/validar-campos');
+//const { esAdminRole } = require('../middlewares/validar-roles');
 
 
 const router = Router();

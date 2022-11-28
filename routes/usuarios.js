@@ -4,10 +4,10 @@ const { Router } = require('express'); //obtengo el objeto Router dentro de expr
 const { check } = require('express-validator');
 
 
-
- const validarCampos = require('../middlewares/validar-campos');
- const { validarJWT } = require('../middlewares/validar-jwt');
- const { esAdminRole, tieneRole } = require('../middlewares/validar-roles');
+const { validarCampos, validarJWT, esAdminRole, tieneRole } = require('../middlewares');
+//  const validarCampos = require('../middlewares/validar-campos');
+//  const { validarJWT } = require('../middlewares/validar-jwt');
+//  const { esAdminRole, tieneRole } = require('../middlewares/validar-roles');
 
 /*const { validarCampos,
     validarJWT,
